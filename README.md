@@ -8,7 +8,7 @@
 
 This app loads loads firebase authentication.  It also keeps track of who is looking at what.
 
-/!\ WORK IN PROGRESS /!\
+:rotating_light: WORK IN PROGRESS :rotating_light:
 
 
 ### Building
