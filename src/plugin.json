@@ -1,0 +1,31 @@
+{
+  "type": "app",
+  "name": "Firebase",
+  "id": "ryantxu-firebase-app",
+
+  "info": {
+    "description": "Firebase Application",
+    "author": {
+      "name": "ryantxu"
+    },
+    "keywords": [ "firebase", "authentication" ],
+    "logos": {
+      "small": "img/firebase.svg",
+      "large": "img/firebase.svg"
+    },
+    "links": [
+      {"name": "Project site", "url": "https://github.com/ryantxu/grafana-firebase-app"},
+      {"name": "MIT License",  "url": "https://github.com/ryantxu/grafana-firebase-app/blob/master/LICENSE"},
+    ],
+    "screenshots": [
+      
+    ],
+    "version": "%VERSION%",
+    "updated": "%TODAY%"
+  },
+
+  "dependencies": {
+    "grafanaVersion": "5.x.x",
+    "plugins": [ ]
+  }
+}
