@@ -1,0 +1,16 @@
+{
+    "type": "panel",
+    "name": "Presense",
+    "id": "ryantxu-firebase-presense-panel",
+  
+    "info": {
+      "description": "Presense",
+      "logos": {
+        "small": "img/firebase.svg",
+        "large": "img/firebase.svg"
+      },
+      "version": "%VERSION%",
+      "updated": "%TODAY%"
+    }
+  }
+  

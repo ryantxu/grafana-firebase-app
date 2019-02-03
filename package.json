@@ -3,10 +3,11 @@
   "version": "0.0.1-dev",
   "description": "Firebase Grafana App",
   "scripts": {
-    "build": "webpack --config webpack.config.prod.js",
-    "dev": "webpack --mode development",
-    "watch": "webpack --mode development --watch",
+    "prebuild": "build/prebuild.sh",
+    "build": "webpack --config build/webpack.prod.conf.js",
+    "dev": "webpack --config build/webpack.dev.conf.js",
     "test": "jest --config jest.config.js",
+    "watch": "webpack --mode development --watch",
     "precommit": "pretty-quick --staged",
     "lint": "tslint -c tslint.json --project tsconfig.json",
     "pretty": "prettier --write src/**/*.ts"
@@ -31,36 +32,38 @@
     "bracketSpacing": false,
     "semi": true
   },
+  "resolutions": {
+    "terser": "3.14.1"
+  },
   "dependencies": {
-    "@types/firebase": "^3.2.1",
-    "firebase": "^5.8.2",
-    "jquery": "^3.2.1",
-    "lodash": "^4.17.10",
-    "moment": "^2.22.1"
+    "firebase": "^5.8.2"
   },
   "devDependencies": {
-    "@types/jest": "^23.3.1",
-    "@types/lodash": "^4.14.74",
-    "babel-core": "^6.26.3",
-    "babel-jest": "^23.0.1",
-    "babel-loader": "^7.1.4",
-    "babel-preset-env": "^1.7.0",
+    "@babel/core": "^7.0.0",
+    "@types/angular": "^1.6.43",
+    "@types/grafana": "github:CorpGlory/types-grafana",
+    "@types/jest": "^23.3.5",
     "clean-webpack-plugin": "^0.1.19",
-    "copy-webpack-plugin": "^4.5.1",
+    "copy-webpack-plugin": "^4.5.2",
     "css-loader": "^1.0.0",
-    "grafana-sdk-mocks": "github:ryantxu/grafana-sdk-mocks",
-    "jest": "^23.0.1",
+    "extract-text-webpack-plugin": "^4.0.0-beta.0",
+    "html-loader": "^0.5.5",
+    "jest": "^23.6.0",
+    "jshint-stylish": "^2.1.0",
+    "lodash": "^4.17.11",
+    "moment": "^2.24.0",
     "ng-annotate-webpack-plugin": "^0.3.0",
-    "prettier": "^1.14",
-    "pretty-quick": "^1.4.1",
-    "release-it": "^10",
+    "node-sass": "^4.9.3",
     "replace-in-file-webpack-plugin": "^1.0.6",
-    "style-loader": "^0.22",
-    "ts-jest": "^23",
-    "ts-loader": "^4.3.0",
-    "typescript": "^3",
-    "uglifyjs-webpack-plugin": "^2.0.1",
-    "webpack": "^4.9.1",
-    "webpack-cli": "^3.1"
+    "sass-loader": "^7.1.0",
+    "style-loader": "^0.23.0",
+    "temp-dir": "^1.0.0",
+    "text-loader": "0.0.1",
+    "ts-jest": "^23.10.4",
+    "ts-loader": "^5.2.1",
+    "tslint": "^5.11.0",
+    "typescript": "^3.1.2",
+    "webpack": "^4.20.2",
+    "webpack-cli": "^3.1.1"
   }
 }

@@ -1,4 +1,5 @@
 
+
 export class FirebaseConfigCtrl {
     static templateUrl = 'partials/config.html';
 
