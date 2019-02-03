@@ -2,7 +2,7 @@ import {PanelCtrl} from 'grafana/app/plugins/sdk';
 
 
 class PresensePanelCtrl extends PanelCtrl {
-    static templateUrl = 'partials/panel-presense.html';
+    static templateUrl = 'panel/presense/presense.html';
 
     /** @ngInject */
     constructor($scope, $injector) {

@@ -1,5 +1,5 @@
 export class FirebaseLoginPageCtrl {
-    static templateUrl = 'partials/login.html';
+    static templateUrl = 'pages/login.html';
 
     /** @ngInject */
     constructor($scope, $rootScope) {

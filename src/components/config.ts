@@ -1,7 +1,7 @@
 
 
 export class FirebaseConfigCtrl {
-    static templateUrl = 'partials/config.html';
+    static templateUrl = 'components/config.html';
 
     enabled: boolean;
     appEditCtrl: any;
