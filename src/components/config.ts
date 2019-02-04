@@ -1,3 +1,5 @@
+import {initApp, Settings} from '../firebase';
+
 export class FirebaseConfigCtrl {
   static templateUrl = 'components/config.html';
 
@@ -5,10 +7,41 @@ export class FirebaseConfigCtrl {
   appEditCtrl: any;
   appModel: any;
 
+  valid: boolean;
+  err: any;
+  settings: Settings;
+
+  grafanaUserInfo: any;
+
   /** @ngInject */
   constructor($scope, $injector, private $q) {
-    this.enabled = false;
     this.appEditCtrl.setPostUpdateHook(this.postUpdate.bind(this));
+    this.valid = false;
+    this.err = null;
+    this.grafanaUserInfo = window.grafanaBootData.user;
+
+    // Make sure it has a JSON Data spot
+    if (!this.appModel) {
+      this.appModel = {};
+    }
+    if (!this.appModel.jsonData) {
+      this.appModel.jsonData = {};
+    } else {
+      // Load firebase with our settings
+      initApp(this.appModel)
+        .then(app => {
+          console.log('HERE!!!', app);
+          if (app) {
+            this.valid = true;
+          }
+        })
+        .catch(reason => {
+          this.err = reason;
+          this.valid = false;
+        });
+    }
+
+    this.settings = this.appModel.jsonData;
   }
 
   postUpdate() {
@@ -16,6 +49,6 @@ export class FirebaseConfigCtrl {
       return this.$q.resolve();
     }
 
-    console.log('POST', this);
+    // TODO, can do stuff after update
   }
 }

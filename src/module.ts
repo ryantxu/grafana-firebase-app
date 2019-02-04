@@ -1,6 +1,13 @@
 import './sass/firebase.dark.scss';
 import './sass/firebase.light.scss';
 
+import {
+  initApp,
+  initAppWithRequest,
+  doSignInWithGoogleRedirect,
+  doSignInWithEmailAndPassword,
+} from './firebase';
+
 // The pages
 import {FirebaseConfigCtrl} from './components/config';
 import {FirebaseLoginPageCtrl} from './pages/login';
@@ -12,9 +19,12 @@ loadPluginCss({
   dark: 'plugins/ryantxu-firebase-app/css/firebase.dark.css',
   light: 'plugins/ryantxu-firebase-app/css/firebase.light.css',
 });
-console.log('IN firebase app init (module.ts)');
 
 export {
+  initApp,
+  initAppWithRequest,
+  doSignInWithGoogleRedirect,
+  doSignInWithEmailAndPassword,
   FirebaseConfigCtrl as ConfigCtrl,
   // Must match `pages.component` in plugin.json
   DebugPageCtrl,

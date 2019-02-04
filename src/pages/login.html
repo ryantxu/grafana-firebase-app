@@ -1,7 +1,52 @@
+<div ng-if="ctrl.valid">
+  <p>TODO... show firebase login info</p>
 
+  <div ng-if="ctrl.user">
+    User: {{ ctrl.user.displayName }}<br />
+    Email: {{ ctrl.user.email }}<br />
 
-<h3 class="page-heading">
-	LOGIN Stuff
-</h3>
+    <button class="btn btn-primary" ng-click="ctrl.doLogout()">
+      Logout
+    </button>
 
-<p>TODO... show firebase login info</p>
+    <br /><br /><br />
+    <h3>Token:</h3>
+    <pre>{{ ctrl.token }}</pre>
+  </div>
+  <div ng-if="!ctrl.user">
+    <div>
+      <button class="btn btn-primary" ng-click="ctrl.doLoginWithGoogle()">
+        Login with Google
+      </button>
+    </div>
+
+    <br />
+    <br />
+    <br />
+
+    <div>
+      <div class="gf-form">
+        <span class="gf-form-label width-9">Email</span>
+        <input
+          type="text"
+          class="gf-form-input width-25"
+          placeholder="your@email"
+          ng-model="ctrl.email"
+        />
+      </div>
+      <div class="gf-form">
+        <span class="gf-form-label width-9">Password</span>
+        <input type="password" class="gf-form-input width-25" ng-model="ctrl.pass" />
+      </div>
+    </div>
+    <button class="btn btn-primary" ng-click="ctrl.doLoginWithPassword()">
+      Login with Email/Password
+    </button>
+  </div>
+</div>
+
+<div ng-if="ctrl.error">
+  <h1>Firebase Error</h1>
+  <pre>{{ ctrl.error }}</pre>
+  Go to the configure page and make sure everything is valid there
+</div>

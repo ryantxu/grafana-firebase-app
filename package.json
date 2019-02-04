@@ -6,7 +6,6 @@
     "prebuild": "build/prebuild.sh",
     "build": "webpack --config build/webpack.prod.conf.js",
     "dev": "webpack --config build/webpack.dev.conf.js",
-    "watch": "webpack --config build/webpack.dev.conf.js --mode development --watch",
     "test": "jest --config jest.config.js",
     "lint": "tslint -c tslint.json --project tsconfig.json",
     "format": "prettier-eslint --write \"src/**/*.{ts,tsx,json,css,js,jsx}\""

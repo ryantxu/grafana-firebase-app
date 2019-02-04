@@ -1,11 +1,64 @@
-<h3 class="page-heading">Firebase App</h3>
+<h2>Firebase Integration</h2>
 
 This app lets you use firebase authentication and access the real time database.
 
-<div class="pluginconfig-message" ng-if="ctrl.appModel.enabled">
-  
-  Application is enabled!
-
-  
-
+<div class="section">
+  <div class="gf-form">
+    <span class="gf-form-label width-9">API Key</span>
+    <input
+      type="text"
+      class="gf-form-input width-25"
+      placeholder="{your key}"
+      ng-model="ctrl.settings.config.apiKey"
+    />
+  </div>
+  <div class="gf-form">
+    <span class="gf-form-label width-9">Auth Domain</span>
+    <input
+      type="text"
+      class="gf-form-input width-25"
+      placeholder="{yourproject}.firebaseapp.com"
+      ng-model="ctrl.settings.config.authDomain"
+    />
+  </div>
+  <div class="gf-form">
+    <span class="gf-form-label width-9">Database URL</span>
+    <input
+      type="text"
+      class="gf-form-input width-25"
+      placeholder="https://{yourproject}.firebaseio.com"
+      ng-model="ctrl.settings.config.databaseURL"
+    />
+  </div>
+  <div class="gf-form">
+    <span class="gf-form-label width-9">Project Id</span>
+    <input
+      type="text"
+      class="gf-form-input width-25"
+      placeholder="{yourproject}"
+      ng-model="ctrl.settings.config.projectId"
+    />
+  </div>
 </div>
+
+<div ng-if="ctrl.appModel.enabled">
+  <br />
+  <h3>PRESENSE</h3>
+  <div class="section">
+    <div class="gf-form">
+      <span class="gf-form-label width-9">Presense Path</span>
+      <input
+        type="text"
+        class="gf-form-input width-25"
+        placeholder="{your key}"
+        ng-model="ctrl.settings.xxxx"
+      />
+    </div>
+  </div>
+</div>
+
+<div ng-if="ctrl.valid">
+  VALID!!!!
+</div>
+
+<pre>{{ ctrl.grafanaUserInfo | json }}</pre>
