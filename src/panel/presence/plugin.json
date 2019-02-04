@@ -6,8 +6,8 @@
     "info": {
       "description": "Presense",
       "logos": {
-        "small": "img/firebase.svg",
-        "large": "img/firebase.svg"
+        "small": "users.svg",
+        "large": "users.svg"
       },
       "version": "%VERSION%",
       "updated": "%TODAY%"

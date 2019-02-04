@@ -1,5 +1,5 @@
 export class DebugPageCtrl {
-    static templateUrl = 'partials/debug.html';
+    static templateUrl = 'pages/debug.html';
 
     /** @ngInject */
     constructor($scope, $rootScope) {

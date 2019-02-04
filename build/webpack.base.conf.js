@@ -50,6 +50,7 @@ module.exports = {
       { from: '../README.md' },
       { from: '**/plugin.json' },
       { from: '**/*.html' },
+      { from: '**/*.svg' },
       { from: 'components/*' },
       { from: 'dashboards/*' },
       { from: 'img/*' },
