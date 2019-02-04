@@ -1,23 +1,21 @@
-
-
 export class FirebaseConfigCtrl {
-    static templateUrl = 'components/config.html';
+  static templateUrl = 'components/config.html';
 
-    enabled: boolean;
-    appEditCtrl: any;
-    appModel: any;
+  enabled: boolean;
+  appEditCtrl: any;
+  appModel: any;
 
-    /** @ngInject */
-    constructor($scope, $injector, private $q) {
-      this.enabled = false;
-      this.appEditCtrl.setPostUpdateHook(this.postUpdate.bind(this));
-    }
-
-    postUpdate() {
-      if (!this.appModel.enabled) {
-        return this.$q.resolve();
-      }
-
-      console.log( 'POST', this );
-    }
+  /** @ngInject */
+  constructor($scope, $injector, private $q) {
+    this.enabled = false;
+    this.appEditCtrl.setPostUpdateHook(this.postUpdate.bind(this));
   }
+
+  postUpdate() {
+    if (!this.appModel.enabled) {
+      return this.$q.resolve();
+    }
+
+    console.log('POST', this);
+  }
+}

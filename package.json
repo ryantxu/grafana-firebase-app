@@ -8,7 +8,6 @@
     "dev": "webpack --config build/webpack.dev.conf.js",
     "watch": "webpack --config build/webpack.dev.conf.js --mode development --watch",
     "test": "jest --config jest.config.js",
-    "precommit": "pretty-quick --staged",
     "lint": "tslint -c tslint.json --project tsconfig.json",
     "pretty": "prettier --write src/**/*.ts"
   },
@@ -24,13 +23,16 @@
     "type": "git",
     "url": "https://github.com/ryantxu/grafana-firebase-app.git"
   },
+  "lint-staged": {
+    "src/**/*.{ts,tsx,json,css,js,jsx}": [
+      "prettier-eslint"
+    ]
+  },
   "prettier": {
-    "singleQuote": true,
     "trailingComma": "es5",
-    "useTabs": false,
-    "printWidth": 90,
+    "singleQuote": true,
     "bracketSpacing": false,
-    "semi": true
+    "printWidth": 100
   },
   "resolutions": {
     "terser": "3.14.1"
@@ -62,8 +64,18 @@
     "ts-jest": "^23.10.4",
     "ts-loader": "^5.2.1",
     "tslint": "^5.11.0",
+    "husky": "^1.2.1",
+    "lint-staged": "^8.1.0",
+    "prettier": "^1.15.3",
+    "prettier-eslint": "^8.8.0",
+    "prettier-eslint-cli": "^4.7.0",
     "typescript": "^3.1.2",
     "webpack": "^4.20.2",
     "webpack-cli": "^3.1.1"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "pretty-quick --staged"
+    }
   }
 }

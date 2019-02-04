@@ -2,8 +2,8 @@
 import { PanelCtrl, loadPluginCss } from 'grafana/app/plugins/sdk';
 
 loadPluginCss({
-  dark: 'plugins/kentik-app/css/kentik.dark.css',
-  light: 'plugins/kentik-app/css/kentik.light.css',
+    dark: 'plugins/ryantxu-firebase-app/css/firebase.dark.css',
+    light: 'plugins/ryantxu-firebase-app/css/firebase.light.css',
 });
 
 
