@@ -1,7 +1,20 @@
-
-
 <h3 class="page-heading">
-	presense panel...
+  presense panel...
 </h3>
 
 <p>TODO... will show the logged in users</p>
+
+<table class="filter-table">
+  <thead>
+    <tr>
+      <th>Email</th>
+      <th>HREF</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr ng-repeat="session in ctrl.results">
+      <td>{{session.email}}</td>
+      <td>{{session.href}}</td>
+    </tr>
+  </tbody>
+</table>

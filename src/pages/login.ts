@@ -16,7 +16,7 @@ export class FirebaseLoginPageCtrl {
   token: string;
 
   /** @ngInject */
-  constructor($scope, $rootScope) {
+  constructor($scope, $rootScope, private backendSrv) {
     console.log('FirebaseLoginPageCtrl:', this);
 
     // Load firebase with our settings
@@ -79,5 +79,28 @@ export class FirebaseLoginPageCtrl {
 
   doLogout() {
     this.app.auth().signOut();
+  }
+
+  doGrafanaJWT() {
+    if (this.app) {
+      this.app
+        .auth()
+        .currentUser.getIdToken()
+        .then(v => {
+          const opts = {
+            method: 'GET',
+            url: '/api/login/ping',
+            headers: {},
+            retry: 1,
+            transformResponse: undefined, // HACK for now since it returns text with json mimetype
+          };
+          opts.headers['X-Your-JWT-Header'] = v;
+          console.log('OPTS', opts);
+
+          this.backendSrv.request(opts).then(info => {
+            console.log('HELLO', info);
+          });
+        });
+    }
   }
 }

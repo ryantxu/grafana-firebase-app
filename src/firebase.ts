@@ -2,14 +2,106 @@ import firebase from '@firebase/app';
 import '@firebase/auth';
 import '@firebase/database';
 
+import config from 'grafana/app/core/config';
+import {debounce} from 'lodash';
+
 import {FirebaseOptions, FirebaseApp} from '@firebase/app-types';
 
 export type Settings = {
   config: FirebaseOptions;
   presense: {
     enabled: boolean;
+    path: string;
   };
 };
+
+function setupPresense(app: FirebaseApp, settigns: Settings) {
+  const user = config.bootData.user;
+
+  // Create a reference to this user's specific status node.
+  // This is where we will store data about being online/offline.
+  const userStatusDatabaseRef = app
+    .database()
+    .ref('grafana/presense/org/' + user.orgId + '/session/')
+    .push();
+
+  // We'll create two constants which we will write to
+  // the Realtime database when this device is offline
+  // or online.
+  const isOfflineForDatabase = {
+    state: 'offline',
+    offline: firebase.database.ServerValue.TIMESTAMP,
+  };
+
+  const isOnlineForDatabase = {
+    state: 'online',
+    online: firebase.database.ServerValue.TIMESTAMP,
+    email: user.email,
+    login: user.login,
+    avatar: user.gravatarUrl,
+    userId: user.id,
+    href: document.location.href,
+    changed: firebase.database.ServerValue.TIMESTAMP,
+  };
+
+  // Create a reference to the special '.info/connected' path in
+  // Realtime Database. This path returns `true` when connected
+  // and `false` when disconnected.
+  app
+    .database()
+    .ref('.info/connected')
+    .on('value', function(snapshot) {
+      // If we're not currently connected, don't do anything.
+      if (snapshot.val() == false) {
+        return;
+      }
+
+      console.log('Connected!');
+      // If we are currently connected, then use the 'onDisconnect()'
+      // method to add a set which will only trigger once this
+      // client has disconnected by closing the app,
+      // losing internet, or any other means.
+      userStatusDatabaseRef
+        .onDisconnect()
+        //.update(isOfflineForDatabase)
+        .remove()
+        .then(() => {
+          // The promise returned from .onDisconnect().set() will
+          // resolve as soon as the server acknowledges the onDisconnect()
+          // request, NOT once we've actually disconnected:
+          // https://firebase.google.com/docs/reference/js/firebase.database.OnDisconnect
+
+          // We can now safely set ourselves as 'online' knowing that the
+          // server will mark us as offline once we lose connection.
+          userStatusDatabaseRef.set(isOnlineForDatabase);
+        });
+    });
+
+  const updatePath = debounce(() => {
+    console.log('After a second', document.location.href);
+    userStatusDatabaseRef.update({
+      href: document.location.href,
+      changed: firebase.database.ServerValue.TIMESTAMP,
+    });
+  }, 500);
+
+  // Look for any changes to the URL
+  let oldHref = document.location.href;
+  const bodyList = document.querySelector('body');
+  const observer = new MutationObserver(mutations => {
+    if (oldHref != document.location.href) {
+      oldHref = document.location.href;
+      updatePath();
+    }
+  });
+
+  const ocfg = {
+    childList: true,
+    attributes: false,
+    subtree: true,
+  };
+  observer.observe(bodyList, ocfg);
+}
 
 let app: FirebaseApp;
 
@@ -27,14 +119,7 @@ export function initApp(appConfig: any): Promise<FirebaseApp> {
       try {
         app = firebase.initializeApp(settings.config);
 
-        // Setup presense system (should only happen once)
-        firebase.auth().onAuthStateChanged(user => {
-          if (user) {
-            console.log('Logged In: ', user);
-          } else {
-            console.log('LOGOUT!');
-          }
-        });
+        setupPresense(app, settings);
 
         return Promise.resolve(app);
       } catch (err) {

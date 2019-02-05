@@ -12,6 +12,9 @@
     <br /><br /><br />
     <h3>Token:</h3>
     <pre>{{ ctrl.token }}</pre>
+    <button class="btn btn-primary" ng-click="ctrl.doGrafanaJWT()">
+      Update Grafana with JWT
+    </button>
   </div>
   <div ng-if="!ctrl.user">
     <div>
