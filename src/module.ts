@@ -30,3 +30,14 @@ export {
   DebugPageCtrl,
   FirebaseLoginPageCtrl,
 };
+
+// STUFF That is auto loaded
+
+// import { BackendSrv, getBackendSrv } from 'grafana/app/core/services/backend_srv';
+// import contextSrv from 'grafana/app/core/core'
+// import coreModule from 'grafana/app/core/core_module';
+function xxx() {
+  console.log('LOADING! Firebase');
+}
+
+xxx();

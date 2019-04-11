@@ -3,7 +3,6 @@ import {initApp, Settings} from '../firebase';
 export class FirebaseConfigCtrl {
   static templateUrl = 'components/config.html';
 
-  enabled: boolean;
   appEditCtrl: any;
   appModel: any;
 

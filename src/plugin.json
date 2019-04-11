@@ -3,6 +3,8 @@
   "name": "Firebase",
   "id": "ryantxu-firebase-app",
 
+  "preload": true,
+
   "info": {
     "description": "Firebase Application",
     "author": {
